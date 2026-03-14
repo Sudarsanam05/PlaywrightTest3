@@ -1,0 +1,39 @@
+function printSummary(steps) {
+  let totalSteps = steps.length;
+  let passed = 0;
+  let failed = 0;
+  let skipped = 0;
+  let totalDuration = 0;
+  let failedSteps = [];
+
+  for (const step of steps) {
+    totalDuration += step.durationMs;
+
+    if (step.status === "passed") {
+      passed++;
+    } else if (step.status === "failed") {
+      failed++;
+      failedSteps.push(step.name);
+    } else if (step.status === "skipped") {
+      skipped++;
+    }
+  }
+
+  console.log("Test Summary Report");
+  console.log("-------------------");
+  console.log(`Total Steps: ${totalSteps}`);
+  console.log(`Passed: ${passed}`);
+  console.log(`Failed: ${failed}`);
+  console.log(`Skipped: ${skipped}`);
+  console.log(`Total Duration: ${totalDuration} ms`);
+  console.log(`Failed Steps: ${failedSteps.join(", ")}`);
+}
+
+const results = [
+  { name: "Login", status: "passed", durationMs: 500 },
+  { name: "Add to Cart", status: "failed", durationMs: 700 },
+  { name: "Checkout", status: "skipped", durationMs: 0 },
+  { name: "Payment", status: "passed", durationMs: 900 }
+];
+
+printSummary(results);
