@@ -1,0 +1,20 @@
+function createUsers(names, roles) {
+  const users = [];
+
+  for (let i = 0; i < names.length; i++) {
+    const username = names[i]
+      .toLowerCase()
+      .replace(/\s+/g, "_");
+
+    const email = `${username}@playwrightbatch.com`;
+
+    users.push({
+      username: username,
+      email: email,
+      role: roles[i]
+    });
+  }
+
+  return users;
+}
+
