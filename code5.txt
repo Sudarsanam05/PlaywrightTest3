@@ -1,0 +1,25 @@
+function runStep(stepName, actionFn) {
+  console.log(`Starting step: ${stepName}`);
+
+  try {
+    actionFn(); // execute callback
+
+    return {
+      stepName: stepName,
+      passed: true,
+      message: "Step executed successfully"
+    };
+  } catch (error) {
+    return {
+      stepName: stepName,
+      passed: false,
+      message: error.message
+    };
+  }
+}
+
+const result = runStep("open dashboard", () => {
+  console.log("Page loaded");
+});
+
+console.log(result);
